@@ -1,4 +1,5 @@
 import sys
+import random
 import requests
 
 class KeyConverter():
@@ -18,6 +19,8 @@ class KeyConverter():
             for car in cars:
                 name = "{} {}".format(color, car)
                 self.names.append(name)
+        random.seed(0)
+        random.shuffle(self.names)
         data = requests.get("https://api.stellarbeat.io/v1/nodes").json()
         for obj in data:
             if "name" in obj and "publicKey" in obj:
